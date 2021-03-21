@@ -21,7 +21,37 @@ class rc_EventHandler : EventHandler
   override
   void worldTick()
   {
-    console.printf("hello");
+    PlayerPawn player = players[consolePlayer].mo;
+    if (player == NULL) return;
+
+    if (!mIsInitialized) initialize();
+    if (!mIsEnabled.getBool()) return;
+
+    player.a_SetPitch(makeNewPitch(player.pitch, mStep.getDouble()), SPF_Interpolate);
   }
+
+// private: ////////////////////////////////////////////////////////////////////////////////////////
+
+  private
+  void initialize()
+  {
+    mIsInitialized = true;
+    mIsEnabled = rc_Cvar.from("rc_enabled");
+    mStep      = rc_Cvar.from("rc_step");
+  }
+
+  private static
+  double makeNewPitch(double pitch, double step)
+  {
+    if (abs(pitch) <= step) return 0;
+    else if (pitch > 0)     return pitch - step;
+    else                    return pitch + step;
+  }
+
+  const STEP = 1;
+
+  private rc_Cvar mIsEnabled;
+  private rc_Cvar mStep;
+  private bool    mIsInitialized;
 
 } // class rc_EventHandler
