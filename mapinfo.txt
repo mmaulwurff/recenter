@@ -1,0 +1,6 @@
+gameinfo
+{
+
+  AddEventHandlers = "rc_EventHandler"
+
+} // gameinfo
