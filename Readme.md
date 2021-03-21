@@ -6,7 +6,7 @@ CCMD, but gradual and automatic.
 ## How to use
 
 Recenter is controlled by two cvars:
-- `rc_enable` - controls if the mod is enabled (default: true);
+- `rc_enabled` - controls if the mod is enabled (default: true);
 - `rc_step` - controls the speed of recentering (default: 1.0). Greater values
   mean faster recentering.
 
